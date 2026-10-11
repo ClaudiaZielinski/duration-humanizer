@@ -21,3 +21,10 @@ The trade-off: it stops at days. Going higher into weeks/months/years forces a d
 - **Zero duration** returns `0s`, not an empty string. An empty return is almost never what a caller wants when they ask "how long did this take?".
 - **Sub-second values are truncated**, not rounded. `59.9s` renders as `59s`, never `1m`. This matches how most log lines behave and avoids surprising jumps near unit boundaries.
 - **Negative input** raises `ValueError`.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+

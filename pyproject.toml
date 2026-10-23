@@ -1,6 +1,6 @@
 [project]
 name = "duration-humanizer"
-version = "0.1.1"
+version = "0.1.2"
 description = "Converts a float of seconds into a compact human-readable string like '3h12m45s', omitting units that are zero."
 requires-python = ">=3.10"
 dependencies = []
